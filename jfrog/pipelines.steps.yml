@@ -1,0 +1,46 @@
+apiVersion: v1.0
+pipelines:
+  - name: sandbox_pipeline
+    steps:
+      # see https://www.jfrog.com/confluence/display/JFROG/MvnBuild
+      - name: mvn_pacakge_skip_image
+        type: MvnBuild
+        configuration:
+          mvnCommand: -Dskip=false clean install
+          sourceLocation: .
+          configFileLocation: jfrog
+          configFileName: mvn-art-config
+          # forceXrayScan: false
+          # failOnScan: true
+          autoPublishBuildInfo: true
+
+          integrations:
+            - name: kirasoa_artifactory
+          inputResources:
+            - name: sandbox_GitRepo
+          outputResources:
+            - name: sandbox_BuildInfo
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - "11"
+        execution:
+          onStart:
+            - echo "[TM] onStart"
+            - ls ${res_sandbox_GitRepo_resourcePath}
+            - pwd
+            - env
+            - find .
+            - ${res_sandbox_GitRepo_resourcePath}/setup_graalvm_ubuntu.sh
+            - source ~/.bashrc
+            - javac -version
+            - mvn -version
+          onSuccess:
+            - echo "[TM] onSuccess"
+          onFailure:
+            - echo "[TM] onFailure"
+          onComplete:
+            - echo "[TM] onComplete"

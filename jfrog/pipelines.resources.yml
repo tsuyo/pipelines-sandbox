@@ -1,0 +1,14 @@
+resources:
+  # Git repo for source
+  - name: sandbox_GitRepo
+    type: GitRepo
+    configuration:
+      path: tsuyo/pipelines-sandbox
+      gitProvider: public_github
+  # Build info for "mvn -Dskip=true clean install"
+  - name: sandbox_BuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: kirasoa_artifactory
+      buildName: sandbox
+      buildNumber: 1
