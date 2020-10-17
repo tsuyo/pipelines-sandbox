@@ -6,4 +6,6 @@ sudo mv graalvm-ce-java11-20.2.0 /usr/lib/jvm
 echo 'export PATH=/usr/lib/jvm/graalvm-ce-java11-20.2.0/bin:$PATH' >> ${HOME}/.bashrc
 echo 'export JAVA_HOME=/usr/lib/jvm/graalvm-ce-java11-20.2.0' >> ${HOME}/.bashrc
 source ${HOME}/.bashrc
+echo "PATH: $PATH"
+echo "JAVA_HOME: $JAVA_HOME"
 gu install native-image
