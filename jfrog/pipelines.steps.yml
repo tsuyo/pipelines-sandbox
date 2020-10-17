@@ -23,10 +23,13 @@ pipelines:
           runtime:
             type: image
             image:
-              auto:
-                language: java
-                versions:
-                  - "11"
+            #  auto:
+            #    language: java
+            #    versions:
+            #      - "11"
+            custom:
+              name: kirasoa/pipelines-u18graalvm
+              tag: 11
         execution:
           onStart:
             - echo "[TM] onStart"
