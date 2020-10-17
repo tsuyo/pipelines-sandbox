@@ -39,8 +39,8 @@ pipelines:
             - env
             - find .
             - id
-            - ${res_sandbox_GitRepo_resourcePath}/setup_graalvm_ubuntu.sh
-            - source ${HOME}/.bashrc
+            - jfrog rt ${res_sandbox_GitRepo_resourcePath}/target/checksum generic-local/
+            - hash -r
             - javac -version
             - mvn -version
           onSuccess:
