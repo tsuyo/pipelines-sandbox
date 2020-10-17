@@ -39,12 +39,12 @@ pipelines:
             - env
             - find .
             - id
-            - jfrog rt ${res_sandbox_GitRepo_resourcePath}/target/checksum generic-local/
             - hash -r
             - javac -version
             - mvn -version
           onSuccess:
             - echo "[TM] onSuccess"
+            - jfrog rt ${res_sandbox_GitRepo_resourcePath}/target/checksum generic-local/
           onFailure:
             - echo "[TM] onFailure"
           onComplete:
