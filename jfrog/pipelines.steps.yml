@@ -27,9 +27,9 @@ pipelines:
             #    language: java
             #    versions:
             #      - "11"
-            custom:
-              name: kirasoa/pipelines-u18graalvm
-              tag: 11
+              custom:
+                name: kirasoa/pipelines-u18graalvm
+                tag: 11
         execution:
           onStart:
             - echo "[TM] onStart"
